@@ -1,0 +1,22 @@
+version: '3.1'
+services:
+  db:
+    container_name: omm-mariadb
+    image: mariadb
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: P@ssw0rd
+      MYSQL_DATABASE: omm-analytics
+      MYSQL_USER: omm
+      MYSQL_PASSWORD: omm
+    volumes:
+      - ${PWD}/mariadb:/var/lib/mysql
+
+  adminer:
+    container_name: omm-mariadb-admin
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
